@@ -23,10 +23,17 @@ def run_speechbrain(model_id, data_manifest, data_folder, output_manifest):
     ---------
     Create an output manifest containing ground truths and predictions
     """
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    try:
+        if torch.backends.mps.is_available() and torch.backends.mps.is_built():
+             device = "mps"
+    except:
+        pass
+
     asr_model = EncoderASR.from_hparams(
         source=model_id,
         savedir="pretrained_models/",
-        run_opts={"device":"cuda"},
+        run_opts={"device": device},
     )
     with open(data_manifest, "r") as f:
         with open(output_manifest, 'w') as fout:
@@ -39,8 +46,10 @@ def run_speechbrain(model_id, data_manifest, data_folder, output_manifest):
                 in_path = item["audio_filepath"].format(data_folder=data_folder)
                 duration = item["duration"]
 
-                torch.cuda.reset_max_memory_allocated(torch.device("cuda"))
-                initial_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
+                initial_memory = 0
+                if device == "cuda":
+                    torch.cuda.reset_max_memory_allocated(torch.device("cuda"))
+                    initial_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
 
                 start_time = time.time()
                 transcription = asr_model.transcribe_file(in_path)
@@ -51,18 +60,28 @@ def run_speechbrain(model_id, data_manifest, data_folder, output_manifest):
                     all_inference_time += inference_time
                     all_audio_duration += duration
 
-                peak_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
-                all_inference_memory.append(peak_memory-initial_memory)        
+                if device == "cuda":
+                    peak_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
+                    all_inference_memory.append(peak_memory-initial_memory)        
                 count += 1
                 metadata = {
                     "audio_filepath": in_path,
                     "text": item["text"],
                     "pred_text": transcription,
+                    "inference_time": inference_time,
+                    "duration": duration
                 }
                 json.dump(metadata, fout, ensure_ascii=False)
                 fout.write('\n')
 
-    print("average rtf : ", all_inference_time/all_audio_duration)
+    if all_audio_duration > 0:
+        print("average rtf : ", all_inference_time/all_audio_duration)
+    else:
+        print("average rtf : N/A (not enough samples)")
+    
     print("model memory : ", initial_memory)
-    print("average inference-only memory : ", sum(all_inference_memory)/len(all_inference_memory))
+    if all_inference_memory:
+        print("average inference-only memory : ", sum(all_inference_memory)/len(all_inference_memory))
+    else:
+        print("average inference-only memory : N/A")
 

@@ -56,17 +56,37 @@ def calculate_wer(output_manifest):
 
     Output
     ---------
-    WER/CER
+    WER/CER, Average Latency, RTF
     """
     predictions = []
     target_transcripts = []
+    inference_times = []
+    durations = []
+
     with open(output_manifest, "r") as f:
         for line in tqdm(f):
             item = json.loads(line)
             target_transcripts.append(normalize_arabic_text(item['text']))
             predictions.append(normalize_arabic_text(item['pred_text']))
+            if "inference_time" in item:
+                inference_times.append(item["inference_time"])
+            if "duration" in item:
+                durations.append(item["duration"])
+
     wer = word_error_rate(predictions, target_transcripts)
     print("wer : ", wer)
     cer = word_error_rate(predictions, target_transcripts, use_cer=True)
     print("cer : ", cer)
+
+    if inference_times:
+        avg_latency = sum(inference_times) / len(inference_times)
+        print(f"average latency (s) : {avg_latency:.4f}")
+    
+    if inference_times and durations and len(durations) > 0:
+        total_time = sum(inference_times)
+        total_duration = sum(durations)
+        if total_duration > 0:
+            rtf = total_time / total_duration
+            print(f"rtf : {rtf:.4f}")
+
     return wer, cer

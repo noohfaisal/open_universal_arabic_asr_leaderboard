@@ -1,0 +1,1312 @@
+
+    <html>
+    <head>
+        <title>Leaderboard Database Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h2 { color: #333; }
+            table { border-collapse: collapse; width: 100%; margin-bottom: 30px; }
+            th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+            th { background-color: #f2f2f2; }
+            tr:hover { background-color: #f5f5f5; }
+            .high-wer { color: red; font-weight: bold; }
+        </style>
+    </head>
+    <body>
+        <h1>📊 Metrics Database Report</h1>
+        
+        <h2>🧪 Experiments (Runs)</h2>
+        <table border="1" class="dataframe table table-striped">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id</th>
+      <th>model_name</th>
+      <th>dataset_name</th>
+      <th>timestamp</th>
+      <th>global_wer</th>
+      <th>global_cer</th>
+      <th>avg_latency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>4</td>
+      <td>whisper</td>
+      <td>arabic_diacritized</td>
+      <td>2026-01-13 14:02:10.429657</td>
+      <td>1.033947</td>
+      <td>1.015467</td>
+      <td>6.528386</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>whisper</td>
+      <td>casablanca</td>
+      <td>2026-01-13 14:02:10.571111</td>
+      <td>1.015720</td>
+      <td>1.010217</td>
+      <td>1.322664</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>omnilingual_asr</td>
+      <td>arabic_diacritized</td>
+      <td>2026-02-03 11:30:08.694002</td>
+      <td>0.148390</td>
+      <td>0.063783</td>
+      <td>17.276719</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_sada</td>
+      <td>2026-02-03 11:30:08.892171</td>
+      <td>0.441851</td>
+      <td>0.249038</td>
+      <td>23.039935</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>2026-02-03 11:30:09.101917</td>
+      <td>0.649087</td>
+      <td>0.299301</td>
+      <td>13.037675</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>whisper</td>
+      <td>sada</td>
+      <td>2026-02-03 11:30:09.324027</td>
+      <td>0.571483</td>
+      <td>0.374664</td>
+      <td>268.072419</td>
+    </tr>
+  </tbody>
+</table>
+        
+        <h2>🔍 Detailed Inferences (Last 100)</h2>
+        <p>Showing most recent results first.</p>
+        <table border="1" class="dataframe table table-striped">
+  <thead>
+    <tr style="text-align: right;">
+      <th>id</th>
+      <th>model_name</th>
+      <th>dataset_name</th>
+      <th>audio_filepath</th>
+      <th>wer</th>
+      <th>cer</th>
+      <th>inference_time</th>
+      <th>rtf</th>
+      <th>ground_truth</th>
+      <th>prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>48625</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_802.flac</td>
+      <td>0.642857</td>
+      <td>0.444444</td>
+      <td>20.676592</td>
+      <td>3.093358</td>
+      <td>ها ها ها حجة تعالي  تعالي تعالي ارجعي ارجعي  ارجعي ارجعي ارجعي مالك مالك</td>
+      <td>تعالي تعالي تعالي تعالي تعالي تعالي تعالي جاي جاي جاي مالك مالك مالك</td>
+    </tr>
+    <tr>
+      <td>48624</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_801.flac</td>
+      <td>0.666667</td>
+      <td>0.434783</td>
+      <td>4.958483</td>
+      <td>2.588869</td>
+      <td>ااا من خالتنا ، مني هذا</td>
+      <td>من خالط لها من هذا</td>
+    </tr>
+    <tr>
+      <td>48623</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_800.flac</td>
+      <td>2.000000</td>
+      <td>1.288889</td>
+      <td>59.782305</td>
+      <td>3.805918</td>
+      <td>تعرفو جدكن انا ابوه الصغير انتم ماتعرفونيش،ركوزو خليكم مركوزين، انتم ايال الايال انا جدتكن</td>
+      <td>زعمران انا النسخات ثانية كان مات الله يرحمها ويبرد على ويرحمها انا جدتكم الثانية جدتكم الزوج وحده ثانية يعني انا ها انا انتم ما تعرفون علشان تكون معايا يا نبوت</td>
+    </tr>
+    <tr>
+      <td>48622</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_799.flac</td>
+      <td>0.818182</td>
+      <td>0.370370</td>
+      <td>9.861142</td>
+      <td>2.855912</td>
+      <td>ده بسيطه شاقولكن كيف, اصلا هو جا الى عندنا للقريه حقنا</td>
+      <td>انت بسيطة شكلكم كذا اصلا هو جال عندنا القرية حكى ناس</td>
+    </tr>
+    <tr>
+      <td>48621</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_798.flac</td>
+      <td>0.500000</td>
+      <td>0.416667</td>
+      <td>2.684241</td>
+      <td>2.593537</td>
+      <td>ايش عنديك يا حجه.[music]</td>
+      <td>ايش عندك يا حجة</td>
+    </tr>
+    <tr>
+      <td>48620</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_797.flac</td>
+      <td>0.750000</td>
+      <td>0.404762</td>
+      <td>7.398749</td>
+      <td>2.618263</td>
+      <td>و انا داريه انه اهلش كولهم في صنعا.[music]</td>
+      <td>وانا داري انه كلهم في صنعة</td>
+    </tr>
+    <tr>
+      <td>48619</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_796.flac</td>
+      <td>0.538462</td>
+      <td>0.216216</td>
+      <td>18.126247</td>
+      <td>3.071166</td>
+      <td>يا ختي هولا ما عيسمعوا  و لا عيفهموا، ما يشتوش يفهموا، هكذا مرفسين.[music]</td>
+      <td>يا اختي هولا ما عيسمعوا ولا عيفهموا ما يشتوا شيفهموا هكذا مرفسي</td>
+    </tr>
+    <tr>
+      <td>48618</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_795.flac</td>
+      <td>0.916667</td>
+      <td>0.339623</td>
+      <td>8.767330</td>
+      <td>2.826494</td>
+      <td>مابه ياجماعة ايش في ؟ ليش الصياح هذا كله مابه يا اباه</td>
+      <td>ما بي يا جماعة عش في ليش السعادة كله ما بي يا باس</td>
+    </tr>
+    <tr>
+      <td>48617</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_794.flac</td>
+      <td>0.421053</td>
+      <td>0.135417</td>
+      <td>20.222629</td>
+      <td>3.256068</td>
+      <td>مامعش هانا يانصابه  ليش دخلتي هانا ؟  وما جابش لاهانا وما تشتي مننا ،  وما جابك انت وياها لاهانا</td>
+      <td>ما معيش هانا يا نصابة ليش دخلتي هانا وما جابش لهانا وما تشتي مننا وما جابك انت وياها لهانا</td>
+    </tr>
+    <tr>
+      <td>48616</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_793.flac</td>
+      <td>0.250000</td>
+      <td>0.052632</td>
+      <td>6.379239</td>
+      <td>2.537950</td>
+      <td>كلام رجال اعرف امور</td>
+      <td>كلام رجال اعرف اموت</td>
+    </tr>
+    <tr>
+      <td>48615</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_792.flac</td>
+      <td>0.454545</td>
+      <td>0.080645</td>
+      <td>13.823912</td>
+      <td>2.989891</td>
+      <td>الامور اعتصدت بيني وبينك الامور اعتصدت، بعدا انا خايف من حاجة.</td>
+      <td>الامور اعتصدت ديني بينك الامور اعتصدت بعد انا خايف من حاجة</td>
+    </tr>
+    <tr>
+      <td>48614</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_791.flac</td>
+      <td>0.750000</td>
+      <td>0.363636</td>
+      <td>4.112951</td>
+      <td>2.649367</td>
+      <td>وانا اعجل منك يازهايمر</td>
+      <td>وانا اقل منك يا احيانا</td>
+    </tr>
+    <tr>
+      <td>48613</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_790.flac</td>
+      <td>1.000000</td>
+      <td>0.166667</td>
+      <td>4.776523</td>
+      <td>2.708669</td>
+      <td>ماهو؟ اينه هذي المجنونة؟</td>
+      <td>ماهو اين هذه المجنونة</td>
+    </tr>
+    <tr>
+      <td>48612</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_789.flac</td>
+      <td>0.875000</td>
+      <td>0.514286</td>
+      <td>6.154978</td>
+      <td>2.794438</td>
+      <td>قنتا شتاكلني ياحج كريم ، مش اكا مله</td>
+      <td>وانتشتي اكون نياح الكريم مش هاك كملة</td>
+    </tr>
+    <tr>
+      <td>48611</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_788.flac</td>
+      <td>0.444444</td>
+      <td>0.181818</td>
+      <td>13.963740</td>
+      <td>3.068749</td>
+      <td>ياحاج كريم انا قد قلتو له تمشي ، تشوف له واحد ثاني غيري ، انا معي قضايا للحلق</td>
+      <td>يا حكري منا قد قلت ولا تمشي تشوف لي واحد ثاني غيري انا معي قضايا للحلق</td>
+    </tr>
+    <tr>
+      <td>48610</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_787.flac</td>
+      <td>0.884615</td>
+      <td>0.448819</td>
+      <td>36.361229</td>
+      <td>3.469717</td>
+      <td>شوف شوف ، ماتدخلش هذا المواضيع ماتدخلش فيها والا فضي الشجة و ارجم ادتك من هنا  مشي حاليه البهذلة ، مشي حاليه اشردك من هانا تمام</td>
+      <td>شوف شوف ما تخش هذا ماضي ما تخش فيها ولا قضية شقه ودود بتكلمها مش هيحالي نبعد لها مش هيحالي تجردك مهامها</td>
+    </tr>
+    <tr>
+      <td>48609</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_786.flac</td>
+      <td>0.625000</td>
+      <td>0.211382</td>
+      <td>26.517594</td>
+      <td>3.563713</td>
+      <td>انه جل الله عجلك ،ان انت معك حس  ومعك عجل ، ولستاجرت حارس للعمارة ، مافيها يوبه لنا  يوبه للطالع والنازل يوبه  للعمارة مالك</td>
+      <td>ناقل الله عقلك انت معك حس معك عقل ولست اجرت حارس للعمار ما فيه وبه لنا يوبه للطالع والنازل ويوبه للعمار ماله</td>
+    </tr>
+    <tr>
+      <td>48608</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_785.flac</td>
+      <td>1.111111</td>
+      <td>0.269841</td>
+      <td>22.337121</td>
+      <td>3.036048</td>
+      <td>ونهو عطر، بتتبخبخي، وتشتي مثله، ماهو، ليش بتجلديني اصلا.[music]</td>
+      <td>وين هو عطر بتتبخبخي وتشتاي مثله ما هو ليش بتقلديني اصلا</td>
+    </tr>
+    <tr>
+      <td>48607</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_784.flac</td>
+      <td>0.421053</td>
+      <td>0.104762</td>
+      <td>36.745705</td>
+      <td>3.480219</td>
+      <td>بدا المفعول حج الفواكهه ييي يعني يوصل ،يعني الى مبتغاه ،اذا مارايكم من يصيغ لي البرنامج الانتخابي انا ارا</td>
+      <td>بدا المفعول حق الفواكه يعني يوصل يعني الى مبتغاه اذن ما رايكم من يصيغ لي البرنامج الانتخابي انا ارى</td>
+    </tr>
+    <tr>
+      <td>48606</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_783.flac</td>
+      <td>0.636364</td>
+      <td>0.236364</td>
+      <td>48.667925</td>
+      <td>3.825924</td>
+      <td>هيا من هذا الخبر ها ، ايحين عاتفكري ايحين عاتشغلي عجلش ، كلي فواكهه فتحي عجلش  اشتغلي ، مابتفكريش وسيم ،  عند كريم وكريم شيطان كيف فعل  جال اعتمد له الصوت بالواتس اب</td>
+      <td>اي من هذا الخبر اي حين حتفكري اي حين حتشغلي عقلي كلي فواقه فتحي عقلي اشتغلي ما بتفكرش وسيم عندك هريم وكريم شيطان كفعل كان اعتمد للصوت بالواتس اب</td>
+    </tr>
+    <tr>
+      <td>48605</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_782.flac</td>
+      <td>0.785714</td>
+      <td>0.239437</td>
+      <td>16.386404</td>
+      <td>3.105434</td>
+      <td>كيف ما تفعلوا؟ كيف ما تفعلوا؟ و ليش ادينا هذا كله؟ شغلوا عقولكم، فكروا.</td>
+      <td>كافي ما تفعلوا كافي ما تفعلوا وليش تعينها هذا كلش يقولوا عقولكم فكروا</td>
+    </tr>
+    <tr>
+      <td>48604</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_781.flac</td>
+      <td>0.428571</td>
+      <td>0.131148</td>
+      <td>13.556662</td>
+      <td>2.898363</td>
+      <td>و ما دام من هذا يوميه, و فيا ليت والله و الايام كلها انتخابات</td>
+      <td>ما دام من هذا يوميا فيا ليت والله والايام كلها انتخابا</td>
+    </tr>
+    <tr>
+      <td>48603</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_780.flac</td>
+      <td>0.700000</td>
+      <td>0.235294</td>
+      <td>10.388620</td>
+      <td>2.853907</td>
+      <td>اللي فات مات و مافيش داعي عاد نقلب بالملفات القديمه</td>
+      <td>اللي فات مات وماذا يشده عند منقلب الملفات القديمة</td>
+    </tr>
+    <tr>
+      <td>48602</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_779.flac</td>
+      <td>0.500000</td>
+      <td>0.131148</td>
+      <td>12.263483</td>
+      <td>2.928673</td>
+      <td>انا قلت اللي شفتة و اللي سمعتة و يد عم سعيد الي اكلتنا وربتنا</td>
+      <td>انا قلت الي شفتوه الي سمعتوه ويد عم سعيد الي اكلتنا وربتنا</td>
+    </tr>
+    <tr>
+      <td>48601</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_778.flac</td>
+      <td>0.333333</td>
+      <td>0.111111</td>
+      <td>11.595805</td>
+      <td>2.759712</td>
+      <td>يولومونا عليك وكانوة فشل مني او خطا من اخطايي</td>
+      <td>يلومون عليه وكانه فشل مني او خطا من اخطايي</td>
+    </tr>
+    <tr>
+      <td>48600</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_777.flac</td>
+      <td>0.666667</td>
+      <td>0.233333</td>
+      <td>12.685304</td>
+      <td>2.897170</td>
+      <td>صدق يعني عا اطلب منك طلب صغير بس, و انا اسقيك من هذه قبل هذه</td>
+      <td>صدق يعني اطلب منك الطلبة صغيرة بس وانا سقيك من هذي قبلها</td>
+    </tr>
+    <tr>
+      <td>48599</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_776.flac</td>
+      <td>1.000000</td>
+      <td>0.531250</td>
+      <td>8.599092</td>
+      <td>2.714513</td>
+      <td>انا داري افعش, عصبي, اهديي, خلاص</td>
+      <td>انا داني كنت عارف انه اصابي هداي خلاص</td>
+    </tr>
+    <tr>
+      <td>48598</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_775.flac</td>
+      <td>0.333333</td>
+      <td>0.142857</td>
+      <td>2.123546</td>
+      <td>2.620169</td>
+      <td>كيف حالك ياعمة</td>
+      <td>كيف حالك عامة</td>
+    </tr>
+    <tr>
+      <td>48597</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_774.flac</td>
+      <td>0.400000</td>
+      <td>0.210526</td>
+      <td>5.675775</td>
+      <td>2.597022</td>
+      <td>ماهو ،  صوت واحد بس</td>
+      <td>ما هو صوت واحد بس</td>
+    </tr>
+    <tr>
+      <td>48596</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_773.flac</td>
+      <td>0.542857</td>
+      <td>0.226994</td>
+      <td>60.686368</td>
+      <td>3.815447</td>
+      <td>انه ياسر هذا من يعول عليه ،هو غير عاطل ناطل ، بعدا محد يغثا منه ،لكن ذلحينا ان شا الله لما يفوز عمك في الانتخابات ، شعزمك غدا ،  ونتغدا انا وانت وياسر  وناصر واروى</td>
+      <td>الناي ياسر هذا مني اول علي هو غير عاطل ناطل بعد ما حد يخذها منه لكن ده الحينه ان شا الله لما يفوز عماك في الانتخابات مش عاوز ماك غدا متغدا انا وانت وياسر وناصر واروق</td>
+    </tr>
+    <tr>
+      <td>48595</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_772.flac</td>
+      <td>0.777778</td>
+      <td>0.279070</td>
+      <td>11.474548</td>
+      <td>2.835008</td>
+      <td>ساعة امي ساعة ياسر قول الصدق ولا بتخبي عليا</td>
+      <td>ساعمي ساعياس يرقو لصادق ولا بتخفي عليا</td>
+    </tr>
+    <tr>
+      <td>48594</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_771.flac</td>
+      <td>1.083333</td>
+      <td>0.546875</td>
+      <td>15.683113</td>
+      <td>3.078713</td>
+      <td>الله المستعان ياحجة  جاسمة ، انتي اتوكلي بس والباجي عليا ، خاطرش</td>
+      <td>اللهم استعانة ياحتجاز ما انت توكل لي بس والوقت عليه خاطرش يا مدري طرف</td>
+    </tr>
+    <tr>
+      <td>48593</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_770.flac</td>
+      <td>0.875000</td>
+      <td>0.238095</td>
+      <td>7.231884</td>
+      <td>2.811228</td>
+      <td>صوتش حالي يا امة، غير لو تخلية للانتخابات.</td>
+      <td>صوتك حاليا مغر لو تخليه للانتخابات</td>
+    </tr>
+    <tr>
+      <td>48592</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_769.flac</td>
+      <td>0.619048</td>
+      <td>0.242991</td>
+      <td>50.051426</td>
+      <td>3.857614</td>
+      <td>فا فا ااجب ااجب ، عندما شافني زغللين ايونه ،كان يفلت يفلت ويتفرطط،  كان يتفرطط ، ويتفكفك في الهوا الطلق  ها</td>
+      <td>ف ف اعجب اعجب عندما شافني زغللين عيونه ها كذا يا كان يفلت يفلت ويتفرتت كان يتفرتت ويتفكفك في الهوا الطلق ها</td>
+    </tr>
+    <tr>
+      <td>48591</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_768.flac</td>
+      <td>0.500000</td>
+      <td>0.073171</td>
+      <td>21.405653</td>
+      <td>3.175491</td>
+      <td>توصيلة وفا, توصيلة بقا, توصيلة حب, توصيلة ايمان بهذاالحياة الاسلامية, السلام عليكم</td>
+      <td>توصيلة وفا توصيلة بقع توصيلة حب توصيلة ايمان بهذا الحياة الاسلامية السلام عليكم</td>
+    </tr>
+    <tr>
+      <td>48590</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_767.flac</td>
+      <td>0.666667</td>
+      <td>0.111111</td>
+      <td>3.950615</td>
+      <td>2.570702</td>
+      <td>يعني, كم الاجمالي؟</td>
+      <td>يعني كم الاجمالي</td>
+    </tr>
+    <tr>
+      <td>48589</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_766.flac</td>
+      <td>0.846154</td>
+      <td>0.316667</td>
+      <td>9.894235</td>
+      <td>2.797887</td>
+      <td>يه, خليك كذا, خليك كذا عانس كذا, لما تاكلك امدود و انتي واقف</td>
+      <td>خليكي كذا خليكي كذا عانز كذا لما تاكلكم دود انطواكا</td>
+    </tr>
+    <tr>
+      <td>48588</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_765.flac</td>
+      <td>0.750000</td>
+      <td>0.325581</td>
+      <td>9.543326</td>
+      <td>2.812333</td>
+      <td>امك اطلقت ، اااا الله يرحمها يابنتي الفاتحة</td>
+      <td>امك تطلقات ايوه اطلقات الله يرحمها يا بنت الفتحه</td>
+    </tr>
+    <tr>
+      <td>48587</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_764.flac</td>
+      <td>1.000000</td>
+      <td>0.400000</td>
+      <td>1.869960</td>
+      <td>2.377805</td>
+      <td>اطلقت</td>
+      <td>طلعت</td>
+    </tr>
+    <tr>
+      <td>48586</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_763.flac</td>
+      <td>0.545455</td>
+      <td>0.125000</td>
+      <td>11.612846</td>
+      <td>2.851404</td>
+      <td>كلام احمد موزون و حالي مابش احسن منه، احمد و بس.</td>
+      <td>كلام احمد موزون وحالي ما مش احسن منه احمد وبس</td>
+    </tr>
+    <tr>
+      <td>48585</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_762.flac</td>
+      <td>0.200000</td>
+      <td>0.028037</td>
+      <td>36.516973</td>
+      <td>3.605772</td>
+      <td>و لن ادعك تضحك على الناس بكلمتين لا نفقه معناها، ايها القوم ساكون الرجل المثالي الذي يحافظ على حقوق المراة.</td>
+      <td>ولن ادعك تضحك على الناس بكلمتين لا نفقه معناها ايها القوم ساكون الرجل المثالي الذي يحافظ على حقوق المراة</td>
+    </tr>
+    <tr>
+      <td>48584</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_761.flac</td>
+      <td>0.636364</td>
+      <td>0.181818</td>
+      <td>16.302238</td>
+      <td>3.005410</td>
+      <td>و اصل الحكاية، هي اليمن السعيد، مهد الحضارة و شريان الحياة.[music]</td>
+      <td>واصل الحكاية هي اليمن السعيد مهد الحضارة وشريان الحياة</td>
+    </tr>
+    <tr>
+      <td>48583</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_760.flac</td>
+      <td>0.600000</td>
+      <td>0.177778</td>
+      <td>24.501634</td>
+      <td>3.233282</td>
+      <td>هاا يعني تقلع ولي امرك ، هي نفسه ياحمود. طيب افرض لو انتخبنا واحد اعوج اضوط الوق مو نعمل ؟</td>
+      <td>هاااا يعني تقلع ولي امراق هي نفسه يا حمود طيب يفرض لو انتخبنا واحد دعوة ياضوط الوقت منعمل</td>
+    </tr>
+    <tr>
+      <td>48582</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_759.flac</td>
+      <td>0.666667</td>
+      <td>0.187500</td>
+      <td>3.960687</td>
+      <td>2.495765</td>
+      <td>كملت، نفعل جرعة.</td>
+      <td>كملت نفعل قرعة</td>
+    </tr>
+    <tr>
+      <td>48581</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_758.flac</td>
+      <td>0.538462</td>
+      <td>0.274194</td>
+      <td>15.093403</td>
+      <td>3.054264</td>
+      <td>ياه معي بيت وجهال ، اشتي ارجع البلاد ،  من عايعانيهم جد شغلوني</td>
+      <td>يييي معي بيت وجهال ليش بيرجع البلاد من عانيهم قد شغلوني</td>
+    </tr>
+    <tr>
+      <td>48580</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_757.flac</td>
+      <td>0.692308</td>
+      <td>0.298246</td>
+      <td>10.232782</td>
+      <td>2.820070</td>
+      <td>صلي علي النبي عاد الصغار بدي يحمى وجد انتي ، شش مالك مالك</td>
+      <td>وصلي على النبي على الصغار بدا يحمو وده مالك مالك</td>
+    </tr>
+    <tr>
+      <td>48579</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_756.flac</td>
+      <td>0.600000</td>
+      <td>0.202381</td>
+      <td>15.997296</td>
+      <td>3.107777</td>
+      <td>ايوه، معنا انتخابات مجلس عايلي، يعني انتخابات ما بين بيت ابي، و بيت عمي كريم.[music]</td>
+      <td>ايوه معنا انتخابت مجلس عايلي يعني انتخابت ما بين بيت ابي وبيت عم جري</td>
+    </tr>
+    <tr>
+      <td>48578</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_755.flac</td>
+      <td>0.307692</td>
+      <td>0.137255</td>
+      <td>8.178644</td>
+      <td>2.905003</td>
+      <td>يا رجال ماشي والله قد شا اجي والله ان قد انا عا اجي</td>
+      <td>يا رجال ماشي والله قد شاجيه والله ما قد انا عند اجي</td>
+    </tr>
+    <tr>
+      <td>48577</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_754.flac</td>
+      <td>0.588235</td>
+      <td>0.170732</td>
+      <td>16.988804</td>
+      <td>3.231719</td>
+      <td>اسمعي كوني اسمعي كلامي, اليوم ارتاحي لش و افتهني لش, و بكره ان شا الله نبدا الجلسه</td>
+      <td>اسمعي يخوني اسمعي كلامي اليوم مرتاحي ليش وافتحي ليش وبخرج ان شا الله نبدا الجلسة</td>
+    </tr>
+    <tr>
+      <td>48576</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_753.flac</td>
+      <td>0.611111</td>
+      <td>0.363636</td>
+      <td>16.095573</td>
+      <td>3.299613</td>
+      <td>و والله ما كان قصدي حاجه, قد قلت لك تجي عندي جي عندي البيت, ما تشتي الا عندها</td>
+      <td>والله ما قمت بصلحاته قلت ليش تجي عندي تجي عندي البيت مافي مافي تشتري عندها</td>
+    </tr>
+    <tr>
+      <td>48575</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_752.flac</td>
+      <td>0.800000</td>
+      <td>0.200000</td>
+      <td>5.955660</td>
+      <td>2.733794</td>
+      <td>سلامتش الف سلامه يا حليمه</td>
+      <td>سلامتي شو الف سلامة يا حليمة</td>
+    </tr>
+    <tr>
+      <td>48574</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_751.flac</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.942151</td>
+      <td>2.330336</td>
+      <td>حياش</td>
+      <td>حياش</td>
+    </tr>
+    <tr>
+      <td>48573</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_750.flac</td>
+      <td>0.631579</td>
+      <td>0.217949</td>
+      <td>18.795801</td>
+      <td>3.173629</td>
+      <td>ازوجاااااك؟ و انت عاطل لا معك عمل و لا شغل و لا مشغلة, و انت ناتع مابش معك شغل</td>
+      <td>عدو جاك وانت عاطل لا معك عمل ولا شغل ولا مشغلة وانت تنافع ما مش معك شغل</td>
+    </tr>
+    <tr>
+      <td>48572</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_749.flac</td>
+      <td>0.666667</td>
+      <td>0.073171</td>
+      <td>7.871166</td>
+      <td>2.903323</td>
+      <td>ياجماعة لاتضغطوش عليها خلوها تفكر براحتها</td>
+      <td>يا جماعة لا اضغطوش عليها خلوها تفكر براحتها</td>
+    </tr>
+    <tr>
+      <td>48571</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_748.flac</td>
+      <td>1.000000</td>
+      <td>0.192308</td>
+      <td>4.777498</td>
+      <td>2.831411</td>
+      <td>الصدج ادولي وجت اشاور عجلي</td>
+      <td>الصدق الدولي وقت الشاور عقلي</td>
+    </tr>
+    <tr>
+      <td>48570</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_747.flac</td>
+      <td>0.285714</td>
+      <td>0.066667</td>
+      <td>7.783530</td>
+      <td>2.683749</td>
+      <td>انا اختهم محد يفضل اخ على اخوه</td>
+      <td>انا اختهم ما حد يفضل اخ على اخوه</td>
+    </tr>
+    <tr>
+      <td>48569</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_746.flac</td>
+      <td>0.375000</td>
+      <td>0.187500</td>
+      <td>9.287972</td>
+      <td>2.658283</td>
+      <td>ان شا الله يفوز  ، ا كريم زهايمر</td>
+      <td>ان شا الله يفوز كريم زهيمر</td>
+    </tr>
+    <tr>
+      <td>48568</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_745.flac</td>
+      <td>0.333333</td>
+      <td>0.116279</td>
+      <td>7.980707</td>
+      <td>2.823996</td>
+      <td>وانت ياخي بس اتجبلها بروح رياضية ، ايش فيها</td>
+      <td>وانت اخي بس تقبلها بروح رياضية ايش فيها</td>
+    </tr>
+    <tr>
+      <td>48567</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_744.flac</td>
+      <td>0.571429</td>
+      <td>0.192308</td>
+      <td>4.366594</td>
+      <td>2.823595</td>
+      <td>با تنقلع و لا اكلم لك ابي؟</td>
+      <td>ما تنقلع ولا اكلم لك به</td>
+    </tr>
+    <tr>
+      <td>48566</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_743.flac</td>
+      <td>0.700000</td>
+      <td>0.170732</td>
+      <td>7.788817</td>
+      <td>2.743459</td>
+      <td>قصف عمرك و ياسر ، كيف دخلت؟ اني جالس هنا!</td>
+      <td>قصف عمرك وياسر كيف دخلت ابي قالس هنا</td>
+    </tr>
+    <tr>
+      <td>48565</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_742.flac</td>
+      <td>0.666667</td>
+      <td>0.174603</td>
+      <td>21.714266</td>
+      <td>3.103530</td>
+      <td>كنت اشتي الاقي يا رافت كانت بنتنفع كثير بالتحقيق  و القضية كلها</td>
+      <td>كنت اشتياقيا رافضت كانت ما تنفع كثير بالتحقيق والقضية كلها</td>
+    </tr>
+    <tr>
+      <td>48564</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_741.flac</td>
+      <td>1.111111</td>
+      <td>0.666667</td>
+      <td>7.573006</td>
+      <td>2.898786</td>
+      <td>و يمكن برضه ما شلهش, خلينا نشوف و نتاكد</td>
+      <td>ولكن برضو لم يكن مروا به ان نراه في التاكد</td>
+    </tr>
+    <tr>
+      <td>48563</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_740.flac</td>
+      <td>1.000000</td>
+      <td>0.782609</td>
+      <td>6.615741</td>
+      <td>2.605096</td>
+      <td>بيكون قد ماجد شله و بلعه ببطنه وقت ما ضرب بسام</td>
+      <td>لا يوجد المكان مضر</td>
+    </tr>
+    <tr>
+      <td>48562</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_739.flac</td>
+      <td>0.857143</td>
+      <td>0.172414</td>
+      <td>4.880252</td>
+      <td>2.854650</td>
+      <td>هو اللي ضغط عليها و عبى راسها</td>
+      <td>واللي يضغط عليها وعبى راسه</td>
+    </tr>
+    <tr>
+      <td>48561</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_738.flac</td>
+      <td>0.985714</td>
+      <td>0.721408</td>
+      <td>141.644936</td>
+      <td>4.599523</td>
+      <td>تضحيتك يا نجاة و شبابك الذي ضاع بتربية اولادي و الاهتمام فيهم شي صعب اجازيك عليه. ما اقدرش اقلك غير شكرا شكرامن قلبي، واحب اقلك كمان اني خصصت لك جز من الورث. طبعا، ذا مش مقابل الي عملتية معي ومع اولادي. لا لا لا، لان فلوس الدنيا كله   ما بتكون كافية على شان ترد جميلك . انا خصصت لك المبلغ ده لانه حقك.. حقك... بورث اختك ام اولادي الله يرحمها</td>
+      <td>ولكن الامر الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل الذي يعتبر بالمقابل</td>
+    </tr>
+    <tr>
+      <td>48560</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_737.flac</td>
+      <td>0.272727</td>
+      <td>0.072727</td>
+      <td>14.261584</td>
+      <td>3.036083</td>
+      <td>الا انك ابن البكر الي تعب سنين عشان يكبر شركه الاستيراد</td>
+      <td>الا انك ابن البكر اللي تعب السنين عشان يكبر شركة الاستيراد</td>
+    </tr>
+    <tr>
+      <td>48559</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_736.flac</td>
+      <td>0.714286</td>
+      <td>0.233333</td>
+      <td>4.440117</td>
+      <td>2.805931</td>
+      <td>ايش في يا منى؟ ايش اللي مكتوب؟</td>
+      <td>ايش فيها مناقش اللي مكتوب</td>
+    </tr>
+    <tr>
+      <td>48558</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_735.flac</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>4.314182</td>
+      <td>3.021466</td>
+      <td>كانه حاسس انه كان بيموت</td>
+      <td>كانه حاسس انه كان بيموت</td>
+    </tr>
+    <tr>
+      <td>48557</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_734.flac</td>
+      <td>0.833333</td>
+      <td>0.225806</td>
+      <td>8.074603</td>
+      <td>2.660178</td>
+      <td>رساله, رساله كتبها جدي لنا كلنا</td>
+      <td>رسالة رسالة كتب قديلنا كلنا</td>
+    </tr>
+    <tr>
+      <td>48556</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_733.flac</td>
+      <td>0.500000</td>
+      <td>0.135417</td>
+      <td>20.513046</td>
+      <td>3.363134</td>
+      <td>انت قديم يا محمود انا قد خرجت الظهر و رحت لعند صاحبي صاحب الفندق و حجزت القاعه و كل شي قدوه مرتب</td>
+      <td>قديم يا محمود انا قد خرجت الظهر ورحت لان صاحبي صاحب الفندق وحقزت القاعة وكل شي قدوم رتب</td>
+    </tr>
+    <tr>
+      <td>48555</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_732.flac</td>
+      <td>0.642857</td>
+      <td>0.149254</td>
+      <td>17.638056</td>
+      <td>3.197020</td>
+      <td>ابونا شخصيه معروفه و معاريفه كثير لهذا لازم نعمل له عزا, و عزا كبير</td>
+      <td>ابونا شخصية معروفة ومعارف كثيرة لهذا لازم نعمل له اعزا واعزا كبيرة</td>
+    </tr>
+    <tr>
+      <td>48554</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_731.flac</td>
+      <td>0.384615</td>
+      <td>0.233333</td>
+      <td>9.161097</td>
+      <td>2.946061</td>
+      <td>الله تسلمي تسلمي يا خاله, ان شا الله انه ما نكونش اتعبناك بس</td>
+      <td>تسلمي تسلمي ها خالة ان شا الله ما نكونش تعبنايك بس</td>
+    </tr>
+    <tr>
+      <td>48553</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_730.flac</td>
+      <td>0.615385</td>
+      <td>0.283582</td>
+      <td>18.027914</td>
+      <td>3.180307</td>
+      <td>يلا فين فاصمه؟ اليوم صيحوا لفاطمه, روحي يا خاله روحي الله يفتح عليك</td>
+      <td>فين فاطمة اليوم سيروح الفاطمة روحي ياخالا روحي يا الله يفتح علي</td>
+    </tr>
+    <tr>
+      <td>48552</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_729.flac</td>
+      <td>1.000000</td>
+      <td>0.491228</td>
+      <td>10.653240</td>
+      <td>3.015685</td>
+      <td>يلا يا حريم يلا كيه ورونا الهمه لكن نشني عشوه حناني طناني</td>
+      <td>الحريرة الله كاينونا الهمة لكن نشتي عشوا حنان طنبها الروح</td>
+    </tr>
+    <tr>
+      <td>48551</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_728.flac</td>
+      <td>0.454545</td>
+      <td>0.125000</td>
+      <td>12.752635</td>
+      <td>2.964476</td>
+      <td>لو سمحت. اني بس اشتي اعرف ايش بيكون مصيرهم دولا التلاتة؟</td>
+      <td>لو سمحت اني بس اشتعرف ايش بيكون مصيرهم دون التلاتة</td>
+    </tr>
+    <tr>
+      <td>48550</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_727.flac</td>
+      <td>0.368421</td>
+      <td>0.114943</td>
+      <td>20.386946</td>
+      <td>3.257221</td>
+      <td>يا جمال عيب خاف الله مش كذا, يا اخي في قانون داخلة البلاد بيحاسبهم, و في رب عالم بالغيب</td>
+      <td>يا جمال عيب خاف الله مش كدا يا اخي في قانون داخلة البلاد بحاسبهم وفي ربع الام الغير</td>
+    </tr>
+    <tr>
+      <td>48549</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_726.flac</td>
+      <td>0.083333</td>
+      <td>0.063492</td>
+      <td>21.813708</td>
+      <td>3.099511</td>
+      <td>تصنع وحش وحش حقيقي ممكن يقلب موازين بيتك ويهده من  اساسه  لراسه</td>
+      <td>تصنع وحش وحش حقيقي ممكن يقلب موازين بيتك ويهدوا من اساسه لراسه</td>
+    </tr>
+    <tr>
+      <td>48548</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_725.flac</td>
+      <td>0.312500</td>
+      <td>0.106667</td>
+      <td>26.684664</td>
+      <td>3.250757</td>
+      <td>بحياتي سمعت قصص كثيره من كل شكل ونوع قليل من هذه القصص الي ممكن اكون استفدت</td>
+      <td>في حياته سمعت قصص كثيرة من كل شكل ولون قليل من هذه القصص اللي ممكن اكون استفدت</td>
+    </tr>
+    <tr>
+      <td>48547</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_724.flac</td>
+      <td>0.571429</td>
+      <td>0.250000</td>
+      <td>9.244464</td>
+      <td>2.699735</td>
+      <td>معقول، مكانك مصر انك تسجنا. تسجنا بلا..!</td>
+      <td>حاقول مكانك مصر انك تسجننا تسجن بناكل</td>
+    </tr>
+    <tr>
+      <td>48546</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_723.flac</td>
+      <td>0.800000</td>
+      <td>0.302326</td>
+      <td>12.295288</td>
+      <td>2.861718</td>
+      <td>اخليك تعرف منو الي قتل قدي بس لاتخليش اي حد</td>
+      <td>خليك تعرف منهم اللغة الجدية بس لا تخليش اي حدا</td>
+    </tr>
+    <tr>
+      <td>48545</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_722.flac</td>
+      <td>0.733333</td>
+      <td>0.215190</td>
+      <td>22.127263</td>
+      <td>3.169911</td>
+      <td>تعاكسوني ياعيال اللذين فسو ولا حسو  ها ، تعاكسوني ياقليل الادب انت وياه ، نعمان</td>
+      <td>تعاكسوني يا اهل الذين فسوا ولا حسوا ها تعاكسوني يا قليل الادمنتوية نعمان</td>
+    </tr>
+    <tr>
+      <td>48544</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_721.flac</td>
+      <td>0.375000</td>
+      <td>0.244444</td>
+      <td>8.010157</td>
+      <td>2.761268</td>
+      <td>طيب اسمع، في حل، انك تجلس تحت الحنفيه.[music]</td>
+      <td>طيب اسمع في حل انك تجلس تحت الحنفية</td>
+    </tr>
+    <tr>
+      <td>48543</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_720.flac</td>
+      <td>0.714286</td>
+      <td>0.283582</td>
+      <td>18.323393</td>
+      <td>3.043435</td>
+      <td>اسره اجتمعنا نسد, مش سع الجهال, انا متضرر قال انا متضرر, هيا و كيف؟</td>
+      <td>اسرة اجتمعنا نسد وسال جهال انا المتضرر قال انا المتضرر هي اوكي</td>
+    </tr>
+    <tr>
+      <td>48542</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_719.flac</td>
+      <td>0.888889</td>
+      <td>0.333333</td>
+      <td>7.847129</td>
+      <td>3.098729</td>
+      <td>يا بابه ايوه انتوا قلتوا، ان انتوا عتدعموا المراة.[music]</td>
+      <td>يا بابا يوانتوا قلتوا انتوا على تدعموا المراة</td>
+    </tr>
+    <tr>
+      <td>48541</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_718.flac</td>
+      <td>0.724138</td>
+      <td>0.250000</td>
+      <td>49.934613</td>
+      <td>3.625954</td>
+      <td>دبارة، هبالة، خبالة، سميها كيف ما شتيك، تمام، انا شتي اجلش حاجة، انا عند ما رشحتش، علا شان تخليهم، يجوموا معي، مش يجوموا ضدي، ونتي تكوني رايسة على ابوش.</td>
+      <td>هباله خباله سميها كفمشتين تمام انا اشتقوا ليش حاجه انا عند ما رشحتش علشان تخليهم يقوموا معي مش يقوموا ضدي وانت تكوني رييسه على ابوش</td>
+    </tr>
+    <tr>
+      <td>48540</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_717.flac</td>
+      <td>1.000000</td>
+      <td>0.369565</td>
+      <td>9.851432</td>
+      <td>2.764958</td>
+      <td>تامرو عليا؟ و تسلموا الايجارات، لزهيمر.[music]</td>
+      <td>تتعاملو علي وتسلمو الايجارات للزهيمر</td>
+    </tr>
+    <tr>
+      <td>48539</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_716.flac</td>
+      <td>0.653846</td>
+      <td>0.302817</td>
+      <td>29.657555</td>
+      <td>3.540251</td>
+      <td>البصيرة  والايجارات  وكل اموره سابرة ، بس انا خايف من حاجة واحدة .انه ماحد حيوافق الا اذا اجتمع مجلس العايلة كلهم وافقوا، كيف عاتعمل ؟ [music]</td>
+      <td>البصيلة والاجارة كل امورك سالتها بس انا خايف من حجي واحد انه معت عيوابك الا اذا اجتمع مجلس العايلة كله موافق وكف عدم عام</td>
+    </tr>
+    <tr>
+      <td>48538</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_715.flac</td>
+      <td>0.750000</td>
+      <td>0.404762</td>
+      <td>7.039592</td>
+      <td>2.847515</td>
+      <td>اختاري بس ، اصلا جرارش  سليم واحنا موافجين</td>
+      <td>اختري بس اصلا قراري شو سليم وهنا</td>
+    </tr>
+    <tr>
+      <td>48537</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_714.flac</td>
+      <td>0.700000</td>
+      <td>0.116667</td>
+      <td>16.376422</td>
+      <td>3.036410</td>
+      <td>بصفتي رييستك، يا حبيبي، رييسة المجلس، بعدين انا مجدرش اختار.</td>
+      <td>بصفتي رييستك يا حبيبي ورييسة المجلس وبعدين انا مقدرش اختار</td>
+    </tr>
+    <tr>
+      <td>48536</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_713.flac</td>
+      <td>0.636364</td>
+      <td>0.224490</td>
+      <td>10.266121</td>
+      <td>2.820031</td>
+      <td>ماينفعش يا ناصر  ماينفعش ، انا اشتي ما ما  ما وات</td>
+      <td>ما ينفعش يا اصير ما ينفعش انا اشتيه ما ما ما وايه</td>
+    </tr>
+    <tr>
+      <td>48535</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_712.flac</td>
+      <td>0.666667</td>
+      <td>0.275862</td>
+      <td>3.868898</td>
+      <td>2.860350</td>
+      <td>وانا ما دخلي بالعمارة ما افعل</td>
+      <td>وانا ماذا اخي بالعمل ما فعل</td>
+    </tr>
+    <tr>
+      <td>48534</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_711.flac</td>
+      <td>0.571429</td>
+      <td>0.142857</td>
+      <td>7.641656</td>
+      <td>2.767395</td>
+      <td>كنت خلاص بوصل, و باكشف كل شي</td>
+      <td>كنت خلص بوصل وبكشف كل شي</td>
+    </tr>
+    <tr>
+      <td>48533</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_710.flac</td>
+      <td>0.666667</td>
+      <td>0.225000</td>
+      <td>9.204561</td>
+      <td>2.760495</td>
+      <td>ما لك؟ ايش تشتي منه؟ الوليد تعبان و مدوخ</td>
+      <td>مالك ايش اشي منو الولاد تعبان مدوخ</td>
+    </tr>
+    <tr>
+      <td>48532</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_709.flac</td>
+      <td>0.200000</td>
+      <td>0.050000</td>
+      <td>3.069029</td>
+      <td>2.727972</td>
+      <td>ذكرت حاجه يا عم طارق</td>
+      <td>ذكرت حاجة يا عم طارق</td>
+    </tr>
+    <tr>
+      <td>48531</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_708.flac</td>
+      <td>1.000000</td>
+      <td>0.684211</td>
+      <td>3.743970</td>
+      <td>2.497882</td>
+      <td>خلوه فقط انوه يرتاح</td>
+      <td>انه يرتاح له</td>
+    </tr>
+    <tr>
+      <td>48530</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_707.flac</td>
+      <td>0.500000</td>
+      <td>0.227273</td>
+      <td>3.616541</td>
+      <td>2.745638</td>
+      <td>عين و ما صلت على النبي</td>
+      <td>وما صلت على النبي</td>
+    </tr>
+    <tr>
+      <td>48529</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_706.flac</td>
+      <td>0.818182</td>
+      <td>0.403846</td>
+      <td>13.952765</td>
+      <td>2.909523</td>
+      <td>ا, طيب مله قل لي, ايش اسمه الحاجه اللي انته اكتشفته؟</td>
+      <td>اه طيب ما قولي ايش صرل الحاجة الجديدة اللي انت اكتشفته</td>
+    </tr>
+    <tr>
+      <td>48528</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_705.flac</td>
+      <td>0.375000</td>
+      <td>0.162162</td>
+      <td>9.187289</td>
+      <td>2.714822</td>
+      <td>اسمع الكلام احسن لك ولا مبيحصل لك خير</td>
+      <td>سمع الكلام احسن لك ولم يحسن لك خير</td>
+    </tr>
+    <tr>
+      <td>48527</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_704.flac</td>
+      <td>0.615385</td>
+      <td>0.318182</td>
+      <td>10.150022</td>
+      <td>2.934918</td>
+      <td>طيب انا باروح بارجع لك بعدين عشان اشل التلفون و عشان الفلوس, تمام؟</td>
+      <td>طيب انا برقع ليك بعدين اه عشان اشيل التليفون و عشان الفلوس</td>
+    </tr>
+    <tr>
+      <td>48526</td>
+      <td>omnilingual_asr</td>
+      <td>omni_1b_casablanca</td>
+      <td>datasets/casablanca_audio/Yemen_703.flac</td>
+      <td>0.529412</td>
+      <td>0.246753</td>
+      <td>21.419159</td>
+      <td>3.114640</td>
+      <td>يعني اا عمك محتاج لهذا الموضوع  ، ايوه علشان بس ، محتاجك وبس ،  اشتيك تصوت لي</td>
+      <td>انا عمك محتاج لهذا الموضوع ايوة علشان بس محتاج له بس اهشتي تصوت لي</td>
+    </tr>
+  </tbody>
+</table>
+        
+    </body>
+    </html>
+    

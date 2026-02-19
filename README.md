@@ -1,58 +1,66 @@
-# Open Universal Arabic ASR Leaderboard
 
-This repository contains the evaluation code for the Open Universal Arabic ASR Leaderboard, a continuous benchmark project for open-source multi-dialectal Arabic ASR models across various multi-dialectal datasets. The leaderboard is hosted at [elmresearchcenter/open_universal_arabic_asr_leaderboard](https://huggingface.co/spaces/elmresearchcenter/open_universal_arabic_asr_leaderboard). For more detailed analysis such as models' robustness, speaker adaption, model efficiency and memory usage, please check our [paper](https://arxiv.org/pdf/2412.13788).
+# Universal Arabic ASR Leaderboard
 
-# Updates
-- [2025/11/13]: New model included: [8 * omnilingual-asr CTC&LLM models](https://github.com/facebookresearch/omnilingual-asr)
-- [2025/09/30]: New model included: [Qwen/Qwen3-Omni-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Instruct)
-- [2025/09/22]: New model included: [mistralai/Voxtral-Small-24B-2507](https://huggingface.co/mistralai/Voxtral-Small-24B-2507)
-- [2025/09/22]: New model included: [mistralai/Voxtral-Mini-3B-2507](https://huggingface.co/mistralai/Voxtral-Mini-3B-2507)
-- [2025/01/11]: New model included: [Nvidia Parakeet-CTC-XXL-1.1B-Universal](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/parakeet-ctc-riva-1-1b-unified-ml-cs-universal)
-- [2025/01/11]: New model included: [Nvidia Parakeet-CTC-XXL-1.1B-Concat](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/parakeet-ctc-riva-1-1b-unified-ml-cs-concat)
-- [2025/01/11]: New dataset included: [Casablanca](https://huggingface.co/datasets/UBC-NLP/Casablanca)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app-url.streamlit.app)
 
-# Datasets
+A comprehensive benchmark and leaderboard for Arabic Automatic Speech Recognition (ASR) models, focusing on diverse dialects and conditions.
 
-Please first download the following test sets
+## 🏆 Current Leaderboard
 
-| Test Set                                                                                        | Num Dialects   | Test (h)    |
-|-------------------------------------------------------------------------------------------------|----------------|-------------|
-| [SADA](https://www.kaggle.com/datasets/sdaiancai/sada2022)                                      | 10             | 10.7        |
-| [Common Voice 18.0](https://commonvoice.mozilla.org/en/datasets)                                | 25             | 12.6        |
-| [MASC (Clean-Test)](https://ieee-dataport.org/open-access/masc-massive-arabic-speech-corpus)    | 7              | 10.5        |
-| [MASC (Noisy-Test)](https://ieee-dataport.org/open-access/masc-massive-arabic-speech-corpus)    | 8              | 14.9        |
-| [MGB-2](http://www.mgb-challenge.org/MGB-2.html)                                                | Unspecified    | 9.6         |
-| [Casablanca](https://huggingface.co/datasets/UBC-NLP/Casablanca)                                | 8              | 7.7         |
+| Model | Avg Latency | Avg WER | Avg CER | Sada WER | Casablanca WER | Arabic Diacritized WER |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Qwen2.5-ASR (1.7B)** | **1.32s** | **48.8%** | **20.4%** | 50.1% | 69.8% | **26.6%** |
+| **Omnilingual (1B)** | 17.8s | 41.3% | 20.4% | **44.2%** | **64.9%** | 14.8% |
+| **Whisper (Large-v3)** | 117s | 49.5% | 27.1% | 57.1% | 73.4% | 17.9% |
 
-# Requirements
+## 🚀 Key Features
 
-We collected models from different toolkits, such as HuggingFace, SpeechBrain, Nvidia-NeMo, etc. Requirements for each library can be installed to evaluate a desired model. To install all the dependencies, run:
+- **Multi-Model Support**: Evaluates Whisper, Qwen2.5, and Omnilingual models.
+- **Diverse Datasets**:
+    - **Sada**: Large-scale Saudi dialect.
+    - **Casablanca**: Challenging Moroccan dialect.
+    - **Arabic Diacritized**: Standard Arabic with diacritics.
+- **Interactive Dashboard**: Streamlit-based dashboard to visualize results and deep-dive into specific samples.
+- **Metrics**: Standard WER/CER plus Real-Time Factor (RTF) and Latency.
+
+## 📦 Installation
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/open_universal_arabic_asr_leaderboard.git
+    cd open_universal_arabic_asr_leaderboard
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## 📊 Usage
+
+### Run the Dashboard
+The dashboard allows you to explore the pre-computed results stored in `metrics.db`.
+
 ```bash
-pip install -r requirements.txt
+streamlit run dashboard.py
 ```
 
-# Evaluate a model
+### Run Inference
+To evaluate a model (e.g., Qwen) on a dataset:
 
-We provide easy-to-use inference functions, to run an ASR model:
-1. Go under `models/`, run the corresponding model inference function to generate an output manifest file containing ground-truths and predictions.
-2. Run `calculate_wer` function in `eval.py` on the output manifest file.
-3. Details can be found in the methods' docstrings.
-
-# Add a new model
-
-Please run the above evaluation for all the test sets under `datasets/`, calculate the average WER/CER, then launch an issue or PR letting us know about your model, training data, and its performance.
-
-We welcome models that:
-1. with a model architecture that is not present in the leaderboard.
-2. avoid using training sets in the same dataset as the test sets to avoid the in-domain issue.
-
-# Citation 
-
-```bibtex
-@article{wang2024open,
-  title={Open Universal Arabic ASR Leaderboard},
-  author={Wang, Yingzhi and Alhmoud, Anas and Alqurishi, Muhammad},
-  journal={arXiv preprint arXiv:2412.13788},
-  year={2024}
-}
+```bash
+python run_qwen_asr.py \
+  --model_id "Qwen/Qwen2.5-ASR-1.7B" \
+  --data_manifest datasets/sada_test.json \
+  --output_manifest results/qwen/sada_output.json \
+  --language Arabic
 ```
+
+## 📂 Project Structure
+
+- `dashboard.py`: Streamlit application code.
+- `models/`: Inference scripts for different architectures.
+- `datasets/`: Manifest files (JSON) for test sets.
+- `results/`: Raw JSON output from inferences.
+- `metrics.db`: SQLite database containing all evaluation results.
+- `scripts/`: various utility scripts for scoring and database management.

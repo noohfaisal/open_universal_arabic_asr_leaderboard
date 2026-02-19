@@ -1,0 +1,34 @@
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.DS_Store
+
+# Large Data & Models
+datasets/*_audio/
+datasets/*_segments/
+datasets/batch*/
+wav2vec2_checkpoint/
+pretrained_models/
+models/VibeVoice_repo/
+models/qwen_checkpoint/
+models/__pycache__/
+
+# Audio Files (Global Ignore)
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.WAV
+
+# Large Data Files
+datasets/*.csv
+
+# Keep results and metrics.db for Dashboard
+# metrics.db
+# results/
+

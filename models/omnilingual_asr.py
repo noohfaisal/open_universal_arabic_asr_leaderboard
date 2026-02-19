@@ -23,43 +23,73 @@ def run_omnilingual(model_id, data_manifest, data_folder, output_manifest):
     Create an output manifest containing ground truths and predictions
     """
     pipeline = ASRInferencePipeline(model_card=model_id)
+    device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+    print(f"Using device: {device}")
     
+    num_lines = sum(1 for _ in open(data_manifest))
+    print(f"Total items to process: {num_lines}")
+
     with open(data_manifest, "r") as f:
         with open(output_manifest, 'w') as fout:
             all_inference_time = 0
             all_audio_duration = 0
             all_inference_memory = []
             count = 0
-            for line in tqdm(f):
+            # Pass total to tqdm for ETA
+            for line in tqdm(f, total=num_lines, unit="item", desc="Inference Progress"):
                 item = json.loads(line)
                 in_path = item["audio_filepath"].format(data_folder=data_folder)
                 duration = item["duration"]
 
-                torch.cuda.reset_max_memory_allocated(torch.device("cuda"))
-                initial_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
-
+                initial_memory = 0
+                if device == "cuda":
+                    torch.cuda.reset_max_memory_allocated(torch.device("cuda"))
+                    initial_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
+                elif device == "mps":
+                    initial_memory = 0 # MPS doesn't expose memory stats easily yet
+                else:
+                    initial_memory = 0
+                
+                # Warmup run is not explicitly done here, but usually fine
                 start_time = time.time()
                 try:
-                    # lang = ['acm_Arab', 'acw_Arab', 'aeb_Arab', 'aec_Arab', 'afb_Arab', 'apc_Arab', 'apd_Arab', 'arb_Arab', 'arq_Arab', 'ars_Arab', 'ary_Arab', 'arz_Arab', 'ayl_Arab', 'ayp_Arab', 'aze_Arab', 'bcc_Arab', 'bft_Arab', 'bgp_Arab', 'bqi_Arab', 'brh_Arab', 'bsh_Arab', 'btv_Arab', 'ckb_Arab', 'dcc_Arab', 'dmk_Arab', 'dml_Arab', 'fas_Arab', 'ggg_Arab', 'gig_Arab', 'gjk_Arab', 'gju_Arab', 'glk_Arab', 'gwc_Arab', 'gwt_Arab', 'hno_Arab', 'kas_Arab', 'khw_Arab', 'kmr_Arab', 'kur_Arab', 'kvx_Arab', 'kxp_Arab', 'lrk_Arab', 'lss_Arab', 'mki_Arab', 'mve_Arab', 'mvy_Arab', 'odk_Arab', 'oru_Arab', 'pbt_Arab', 'pbu_Arab', 'phl_Arab', 'phr_Arab', 'plk_Arab', 'pnb_Arab', 'pst_Arab', 'pus_Arab', 'rif_Arab', 'sbn_Arab', 'scl_Arab', 'skr_Arab', 'snd_Arab', 'ssi_Arab', 'trw_Arab', 'tuk_Arab', 'uig_Arab', 'urd_Arab', 'ush_Arab', 'xhe_Arab', 'xka_Arab', 'ydg_Arab']
-                    transcriptions = pipeline.transcribe([in_path], lang=['arb_Arab'], batch_size=1)
-                    
+                    # pipeline.transcribe expects a list of inputs and returns a list of result strings
+                    # We pass a single file [in_path] and get the first result [0]
+                    transcription = pipeline.transcribe([in_path])[0]
                 except Exception as err:
                     print(f"{err} with file {in_path}")
                     continue
                 end_time = time.time()
-                
+
                 inference_time = end_time - start_time
+                
                 if count > 4:
                     all_inference_time += inference_time
                     all_audio_duration += duration
-                peak_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
-                all_inference_memory.append(peak_memory-initial_memory)        
+                    
+                if device == "cuda":
+                    peak_memory = torch.cuda.max_memory_allocated(torch.device("cuda"))/(1024 ** 3)
+                    all_inference_memory.append(peak_memory-initial_memory)        
                 count += 1
 
                 metadata = {
                     "audio_filepath": in_path,
                     "text": item["text"],
-                    "pred_text": transcriptions[0],
+                    "pred_text": transcription,
+                    "inference_time": inference_time,
+                    "duration": duration
                 }
                 json.dump(metadata, fout, ensure_ascii=False)
                 fout.write('\n')
+
+    if all_audio_duration > 0:
+        print("average rtf : ", all_inference_time/all_audio_duration)
+    else:
+        print("average rtf : N/A")
+        
+    print("model memory : ", initial_memory) 
+    
+    if all_inference_memory:
+        print("average inference-only memory : ", sum(all_inference_memory)/len(all_inference_memory))
+    else:
+        print("average inference-only memory : N/A")
