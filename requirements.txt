@@ -1,14 +1,3 @@
 streamlit
 pandas
-torch
-torchaudio
-transformers
-accelerate
-openai-whisper
-librosa
-soundfile
 jiwer
-nemo_toolkit[all]
-huggingsound
-speechbrain
-qwen-asr
