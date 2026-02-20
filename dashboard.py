@@ -227,7 +227,7 @@ elif view_mode == "🔍 Deep Dive Analysis":
                 if os.path.exists(row['audio_filepath']):
                     st.audio(row['audio_filepath'])
                 else:
-                    st.warning(f"Audio file not found at: {row['audio_filepath']}")
+                    st.info(f"Audio file not available in cloud demo (local file: `{row['audio_filepath']}`)")
                     
                 st.markdown("**Reference:**")
                 st.info(row['ground_truth'])
