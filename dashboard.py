@@ -227,7 +227,16 @@ elif view_mode == "🔍 Deep Dive Analysis":
                 if os.path.exists(row['audio_filepath']):
                     st.audio(row['audio_filepath'])
                 else:
-                    st.info(f"Audio file not available in cloud demo (local file: `{row['audio_filepath']}`)")
+                    # Stream from Hugging Face if local file isn't found (for Streamlit Cloud)
+                    hf_dataset = "Nooh/arabic-asr-audio"
+                    # Assume path is stored as "datasets/...". We uploaded them directly inside "datasets/..." on HF
+                    audio_url = f"https://huggingface.co/datasets/{hf_dataset}/resolve/main/{row['audio_filepath']}"
+                    
+                    try:
+                        st.audio(audio_url)
+                        st.caption(f"Streaming from cloud: `{audio_url}`")
+                    except Exception as e:
+                        st.error(f"Failed to load audio from cloud. Ensure the file exists in the Hugging Face dataset: `{row['audio_filepath']}`")
                     
                 st.markdown("**Reference:**")
                 st.info(row['ground_truth'])
